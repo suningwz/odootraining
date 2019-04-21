@@ -6,9 +6,10 @@
             <script type="text/javascript" src="/oepetstore/static/src/js/petstore.js"/>
         </xpath>
     </template>
-
+    
+    <!--顶部菜单-->
     <menuitem id="main_petstore_menu" name="Pet Store" />
-
+    <!--左侧第一个主菜单-->
     <menuitem id="petstore_menu" name="Pet Store"
         parent="main_petstore_menu" />
 
@@ -16,7 +17,7 @@
         <field name="name">Pet Store Home</field>
         <field name="tag">petstore.homepage</field>
     </record>
-
+    <!--左侧第一个主菜单下的第一个子菜单，因此当点击“顶部菜单”时默认执行的是关联该菜单的action-->
     <menuitem id="home_page_petstore_menu" name="Home Page" parent="petstore_menu"
         action="action_home_page"/>
 

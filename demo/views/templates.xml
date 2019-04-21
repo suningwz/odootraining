@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- <template id="listing"> -->
+        <!--   <ul> -->
+        <!--     <li t-foreach="objects" t-as="object"> -->
+        <!--       <a t-attf-href="#{ root }/objects/#{ object.id }"> -->
+        <!--         <t t-esc="object.display_name"/> -->
+        <!--       </a> -->
+        <!--     </li> -->
+        <!--   </ul> -->
+        <!-- </template> -->
+        <!-- <template id="object"> -->
+        <!--   <h1><t t-esc="object.display_name"/></h1> -->
+        <!--   <dl> -->
+        <!--     <t t-foreach="object._fields" t-as="field"> -->
+        <!--       <dt><t t-esc="field"/></dt> -->
+        <!--       <dd><t t-esc="object[field]"/></dd> -->
+        <!--     </t> -->
+        <!--   </dl> -->
+        <!-- </template> -->
+        <template id="assets_backend" name="demo_assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" href="/demo/static/src/css/demo.css"/>
+                <script type="text/javascript" src="/demo/static/src/js/demo.js"/>
+                <script type="text/javascript" src="/demo/static/src/js/map.js"/>
+                <!--<script type="text/javascript" src="/demo/static/src/js/web_one2many_options.js"/>-->
+                <script type="text/javascript" src="/demo/static/src/js/projectExport.js"/>
+                <script type="text/javascript" src="/demo/static/src/js/sidebar_add_item.js"/>
+                <!--<script src="//api.map.baidu.com/api?v=2.0&amp;ak=Hwni05GkkdsjyQjwgrduHbbGK40kqKoc"></script>-->
+               <!-- <script
+                        src="demo/http://api.map.baidu.com/getscript?v=2.0&amp;%27%20%20%27ak=Hwni05GkkdsjyQjwgrduHbbGK40kqKoc&amp;services=&amp;t=20170308171301"></script>-->
+            </xpath>
+        </template>
+    </data>
+</odoo>

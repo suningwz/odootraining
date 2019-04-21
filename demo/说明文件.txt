@@ -1,0 +1,2 @@
+代码来自以下网址，适用于odoo10，做了点修改用于odoo11（修改print语句为print()，将StringIO模块改为io）
+https://www.jianshu.com/p/695984c4aad2

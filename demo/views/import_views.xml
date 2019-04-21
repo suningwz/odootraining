@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    <!--
+    <record model="ir.ui.view" id="demo.list">
+      <field name="name">demo list</field>
+      <field name="model">demo.demo</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+    -->
+
+    <!-- actions opening views on models -->
+    <!--
+    <record model="ir.actions.act_window" id="demo.action_window">
+      <field name="name">demo window</field>
+      <field name="res_model">demo.demo</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    -->
+
+    <!-- server action to the one above -->
+    <!--
+    <record model="ir.actions.server" id="demo.action_server">
+      <field name="name">demo server</field>
+      <field name="model_id" ref="model_demo_demo"/>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    -->
+
+    <!-- Top menu item -->
+    <!--
+    <menuitem name="demo" id="demo.menu_root"/>
+    -->
+    <!-- menu categories -->
+    <!--
+    <menuitem name="Menu 1" id="demo.menu_1" parent="demo.menu_root"/>
+    <menuitem name="Menu 2" id="demo.menu_2" parent="demo.menu_root"/>
+    -->
+    <!-- actions -->
+    <!--
+    <menuitem name="List" id="demo.menu_1_list" parent="demo.menu_1"
+              action="demo.action_window"/>
+    <menuitem name="Server to list" id="demo" parent="demo.menu_2"
+              action="demo.action_server"/>
+    -->
+    <!-- 数据视图 -->
+    <!-- 单条数据详细表 -->
+    <record model="ir.ui.view" id="import_form_view">
+      <field name="name">import.form</field>
+      <field name="model">demo.import</field>
+      <!--优先级，优先级高的优先显示
+      <field name="priority" eval="5"/>-->
+      <field name="arch" type="xml">
+        <form string="import">
+          <sheet>
+            <group>
+              <field name="file_name"/>
+              <field name="file" widget="binary" filename="file_name"/>
+              <field name="test"/>
+            </group>
+            <button class="oe_edit_only oe_highlight" type="object" name="read_test" ><span>解析</span></button>
+            <button class="oe_edit_only oe_highlight" type="object" name="write_test" ><span>写</span></button>
+          </sheet>
+        </form>
+      </field>
+    </record>
+    <!-- list -->
+    <record model="ir.ui.view" id="import_tree_view">
+      <field name="name">import.tree</field>
+      <field name="model">demo.import</field>
+      <field name="arch" type="xml">
+        <tree string="项目列表">
+          <field name="file_name"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- 搜索栏 -->
+    <!--<record model="ir.ui.view" id="import_search_view">
+      <field name="name">project.search</field>
+      <field name="model">demo.project</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="no"/>
+          <field name="name"/>
+          <field name="startDate"/>
+        </search>
+      </field>
+    </record>-->
+
+    <!-- form标签内也可以套用HTML元素 -->
+    <!-- window action -->
+    <!--menu菜单的点击事件-->
+    <record model="ir.actions.act_window" id="import_list_action">
+      <field name="name">import.act</field>
+      <field name="res_model">demo.import</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+      <field name="help" type="html">
+        <p class="oe_view_nocontent_create">
+          Create the first project.
+        </p>
+      </field>
+    </record>
+
+    <!--menu-->
+    <!--顶部菜单，无父-->
+    <!--<menuitem id="main_project_menu" name="demo"/>-->
+    <!-- 左侧一级菜单 触发点击事件之前的 -->
+    <menuitem id="import_menu" name="import" parent="main_project_menu"/>
+    <!-- 触发点击事件的菜单 -->
+    <menuitem id="import_info_menu" name="importp" parent="import_menu" action="import_list_action"/>
+  </data>
+</odoo>

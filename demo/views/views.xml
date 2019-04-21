@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+  <data>
+    <!-- 数据视图 -->
+    <!-- 单条数据详细表 -->
+    <record model="ir.ui.view" id="project_form_view">
+      <field name="name">项目</field>
+      <field name="model">demo.project</field>
+      <!--优先级，优先级高的优先显示-->
+      <field name="priority" eval="1"/>
+      <field name="arch" type="xml">
+        <form string="项目详细">
+          <sheet>
+            <div>
+              <img src='/demo/static/src/img/partners.png'/>
+            </div>
+            <group col="4">
+              <field name="no"/>
+              <field name="name" placeholder="test"/>
+            </group>
+            <group col="2">
+              <field name="state"/>
+              <field name="money" sum="total money"/>
+            </group>
+            <group col="2">
+              <field name="startDate"/>
+              <button class="oe_edit_only oe_highlight" type="object" name="pop_map"><span>测试</span></button>
+            </group>
+            <group col="2">
+              <field name="test"/>
+              <button class="oe_highlight" type="object" name="add_att"><span>测试增加</span></button>
+              <button class="oe_highlight" type="object" name="copy_att"><span>转换文件</span></button>
+              <button class="oe_highlight" type="object" name="del_att"><span>删除所有文件</span></button>
+              <button class="oe_edit_only oe_highlight" type="object" name="pop_window_view"><span>测试弹窗</span></button>
+              <button class="oe_edit_only oe_highlight" type="object" name="pop_window_url"><span>测试弹窗url</span></button>
+              <a href="/demo/demo/">controller</a>
+            </group>
+            <notebook>
+              <page string="File">
+                <group>
+                  <field name="file" widget="binary" filename="file_name"/>
+                  <field name="file_name"/>
+                  <field name="ir_attachment_file_name"></field>
+                  <field name="ir_attachment_file" widget="binary" filename="ir_attachment_file_name"></field>
+                  <field name="attachment_file_name"></field>
+                  <field name="attachment_file" widget="binary" filename="attachment_file_name"></field>
+                </group>
+              </page>
+              <page string="About">
+                This is an example of notebooks.
+              </page>
+              <page string="Attachments">
+               <!-- <field name="attachment_ids">
+                  <tree string="附件列表">
+                    <field name="name"/>
+                    <field name="attachment" widget="file"/>
+                  </tree>
+                </field>-->
+                <field name="attachment_ids" widget="form-image-upload" string='附件'>
+                  <tree>
+                    <field name="name"/>
+                    <field widget="binary" name="attachment" filename="name"/>
+                    <field name="test"/>
+                  </tree>
+                  <form>
+                    <field name="name" invisible="1"/>
+                    <field widget="binary" name="attachment" filename="name"/>
+                    <field name="test"/>
+                  </form>
+                </field>
+              </page>
+              <page string="自定义附件">
+                <field name="cus_attachment_ids">
+                  <tree>
+                    <field name="name"/>
+                    <field widget="binary" name="attachment" filename="name"/>
+                    <field widget="binary" name="attachment_location" filename="name"/>
+                  </tree>
+                  <form>
+                    <field name="name" invisible="1"/>
+                    <field widget="binary" name="attachment" filename="name"/>
+                    <field widget="binary" name="attachment_location" filename="name"/>
+                  </form>
+                </field>
+              </page>
+              <page string="项目收付款">
+                <field name="receivePay_ids" string="receivePay">
+                  <tree>
+                    <field name="receiveDate"/>
+                    <field name="receiveCompany"/>
+                    <field name="receivables"/>
+                    <field name="description"/>
+                    <field name="expectedRecDate"/>
+                  </tree>
+                  <form>
+                    <group col="4">
+                      <field name="receiveDate"/>
+                      <field name="receiveCompany"/>
+                    </group>
+                    <group col="4">
+                      <field name="receivables"/>
+                      <field name="description"/>
+                    </group>
+                    <group col="4">
+                      <field name="expectedRecDate"/>
+                      <field name="performanceBond_is"/>
+                    </group>
+                  </form>
+                </field>
+                <group>
+                  <field name="total_receive_pay"/>
+                </group>
+              </page>
+              <page string="系统自带附件model">
+                <field name="ir_attachment_ids"></field>
+              </page>
+            </notebook>
+          </sheet>
+          <div class="oe_chatter">
+            <field name="message_follower_ids" widget="mail_followers"/>
+            <field name="message_ids" widget="mail_thread" options='{"thread_level": 1}'/>
+          </div>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="project_pop_form_view">
+      <field name="name">pop</field>
+      <field name="model">demo.project</field>
+      <!--优先级，优先级高的优先显示
+      <field name="priority" eval="5"/>-->
+      <field name="priority" eval="9"/>
+      <field name="arch" type="xml">
+        <form string="pop_form">
+          <button class="oe_edit_only oe_highlight" type="object" name="method_in_pop"><span>测试弹窗方法</span></button>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="project_receive_form_view">
+      <field name="name">demo.project.receivepay</field>
+      <field name="model">demo.project.receivepay</field>
+      <!--优先级，优先级高的优先显示
+      <field name="priority" eval="5"/>-->
+      <field name="arch" type="xml">
+        <form string="receive">
+          <group col="4">
+            <field name="receiveDate"/>
+            <field name="receiveCompany"/>
+          </group>
+          <group col="4">
+            <field name="receivables"/>
+            <field name="description"/>
+          </group>
+          <group col="4">
+            <field name="expectedRecDate"/>
+            <field name="performanceBond_is"/>
+            <field name="project_id" context="{'form_view_ref': 'demo.project_form_view'}"/>
+          </group>
+          <div class="oe_chatter">
+            <field name="message_follower_ids" widget="mail_followers"/>
+            <field name="message_ids" widget="mail_thread" options='{"thread_level": 1}'/>
+          </div>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="demo_cache_form_view">
+      <field name="name">demo.cache</field>
+      <field name="model">demo.cache</field>
+      <!--优先级，优先级高的优先显示
+      <field name="priority" eval="5"/>-->
+      <field name="arch" type="xml">
+        <form string="cache">
+          <group>
+            <field name="no"/>
+            <field name="name"/>
+            <field name="startDate"/>
+            <button name="save" type="object" string="Save" class="oe_highlight oe_read_only"/>
+          </group>
+        </form>
+      </field>
+    </record>
+    <!-- list -->
+    <record model="ir.ui.view" id="project_tree_view">
+      <field name="name">项目树</field>
+      <field name="model">demo.project</field>
+      <field name="arch" type="xml">
+        <tree string="项目列表" colors="blue:state=='draft';red:state=='trashed'">
+          <field name="no"/>
+          <field name="name"/>
+          <field name="state" invisible="1"/>
+          <field name="money" sum="total money"/>
+          <field name="startDate"/>
+        </tree>
+      </field>
+    </record>
+    <record model="ir.ui.view" id="receive_tree_view">
+      <field name="name">demo.project.receivepay</field>
+      <field name="model">demo.project.receivepay</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="receiveDate"/>
+          <field name="receiveCompany"/>
+          <field name="receivables"/>
+          <field name="description"/>
+          <field name="expectedRecDate"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="cache_tree_view">
+      <field name="name">demo.cache</field>
+      <field name="model">demo.cache</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="no"/>
+          <field name="name"/>
+          <field name="startDate"/>
+          <field name="active"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="demo_graph_view">
+      <field name="name">graph</field>
+      <field name="model">demo.project</field>
+      <field name="arch" type="xml">
+        <graph string="demo">
+          <field name="name"></field>
+          <field name="startDate"></field>
+          <field name="money" type="measure"/>
+        </graph>
+      </field>
+    </record>
+    <!-- 搜索栏 -->
+    <record model="ir.ui.view" id="project_search_view">
+      <field name="name">project.search</field>
+      <field name="model">demo.project</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="no"/>
+          <field name="name"/>
+          <field name="startDate"/>
+        </search>
+      </field>
+    </record>
+
+    <!-- form标签内也可以套用HTML元素 -->
+    <!-- window action -->
+    <!--menu菜单的点击事件-->
+    <record model="ir.actions.act_window" id="project_list_action">
+      <field name="name">项目</field>
+      <field name="res_model">demo.project</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form,graph</field>
+      <field name="limit">3</field>
+      <field name="help" type="html">
+        <p class="oe_view_nocontent_create">
+          Create the first project.
+        </p>
+      </field>
+    </record>
+    <record model="ir.actions.act_window" id="receive_list_action">
+      <field name="name">demo.project.receivepay</field>
+      <field name="res_model">demo.project.receivepay</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+      <field name="limit">20</field>
+      <field name="help" type="html">
+        <p class="oe_view_nocontent_create">
+          Create the first project.
+        </p>
+      </field>
+    </record>
+    <record model="ir.actions.act_window" id="cache_list_action">
+      <field name="name">demo.cache</field>
+      <field name="res_model">demo.cache</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+      <field name="limit">20</field>
+      <field name="help" type="html">
+        <p class="oe_view_nocontent_create">
+          Create the first project.
+        </p>
+      </field>
+    </record>
+    <!-- action widget调用 -->
+    <record id="action_home_page" model="ir.actions.client">
+      <field name="name">demo home</field>
+      <field name="tag">demo_home_page</field>
+    </record>
+    <record id="map_page_action" model="ir.actions.client">
+      <field name="name">map</field>
+      <field name="tag">demo_baidu_map</field>
+    </record>
+    <!--wizard-->
+    <record model="ir.ui.view" id="wizard_form_view">
+      <field name="name">wizard.form</field>
+      <field name="model">demo.wizard</field>
+      <field name="arch" type="xml">
+        <form string="Add Attendees">
+          <group>
+            <field name="project_id"/>
+            <field name="test_ids"/>
+          </group>
+          <footer>
+            <button name="subscribe" type="object" string="Subscribe" class="oe_highlight"/>
+            or
+            <button special="cancel" string="Cancel"/>
+          </footer>
+        </form>
+      </field>
+    </record>
+
+
+    <!--menu-->
+    <!--顶部菜单，无父-->
+    <menuitem id="main_project_menu" name="demo" groups="base.group_user"/>
+    <!-- 左侧一级菜单 触发点击事件之前的 -->
+    <menuitem id="project_menu" name="demo" parent="main_project_menu"/>
+    <!-- 触发点击事件的菜单 -->
+    <menuitem id="project_info_menu" name="demo" parent="project_menu" action="project_list_action"/>
+    <!-- wiget调用homepage-->
+    <menuitem id="home_page_menu" name="homepage" parent="main_project_menu" action="action_home_page"/>
+    <menuitem id="map_page_menu" name="map" parent="main_project_menu" action="map_page_action"/>
+    <menuitem id="receive_page_menu" name="receive" parent="main_project_menu" action="receive_list_action"/>
+    <menuitem id="cache_page_menu" name="cache" parent="main_project_menu" action="cache_list_action"/>
+  </data>
+</odoo>

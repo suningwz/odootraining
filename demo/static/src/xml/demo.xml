@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    t-name:声明一个新的模板，js中可赋值给template属性，也可通过QWeb.render方法调用
+    t-esc: 可以用处文本输出，可以使用符合js语法规则的内容，结果会转义为HTML内容<div><t t-esc="name.toUpperCase()"/></div>
+    t-raw: 注入HTML渲染页面<div><t t-raw="name.link(user_account)"/></div>
+    t-if: 条件表达式，没有else
+    t-foreach t-as: 遍历
+    <t t-foreach="names" t-as="name">
+        <div>
+            Hello <t t-esc="name"/>
+        </div>
+    </t>
+    属性定义：t-att-'attributes' 如t-att-name/t-attf-name定义name属性 t-att-id 定义id属性
+    t-att- 值可以为js表达式  <input type="text" t-att-value="defaultName"/>
+    t-attf- 格式化字符串
+    takes a format string. A format string is literal text with interpolation blocks inside,
+    an interpolation block is a javascript expression between {{ and }},
+    which will be replaced by the result of the expression. It is most useful for attributes
+    which are partially literal and partially computed such as a class:
+    <div t-attf-class="container {{ left ? 'text-left' : '' }} {{ extra_class }}">
+     insert content here
+    </div>
+    t-call：可以引入其他模板，进行组合<t t-call="B"/>
+-->
+<templates xml:space="preserve">
+    <t t-name="HomePageTemplate">
+        <div style="background-color: red;">
+            This is some simple HTML.get from widget <t t-esc="widget.name"/>
+        </div>
+        <!--<div style="background-color: green;">123</div>-->
+    </t>
+    <t t-name="BaiduMap">
+        <div class="map">
+            <div class="mapVal" id="mapVal"></div>
+            <button class="my_button"><span>存储值</span></button>
+            <iframe class="iMap"
+                    style="width:898px; height:485px; border:0; padding:0; margin:0;"></iframe>
+        </div>
+    </t>
+</templates>

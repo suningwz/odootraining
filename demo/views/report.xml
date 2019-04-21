@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <report
+                id="report_demo"
+                model="demo.project"
+                string="Demo Report"
+                name="demo.report_project_view"
+                file="demo.report_project"
+                report_type="qweb-pdf" />
+        <template id="report_project_view">
+            <t t-call="report.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="report.external_layout">
+                        <div class="page">
+                            <h2 t-field="doc.name"/>
+                            <ul>
+                                <t t-foreach="doc.receivePay_ids" t-as="receive">
+                                    <li><span t-field="receive.receiveDate"></span></li>
+                                </t>
+                            </ul>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

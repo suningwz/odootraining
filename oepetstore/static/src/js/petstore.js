@@ -1,13 +1,21 @@
-odoo.oepetstore = function(instance, local) {
-    var _t = instance.web._t,
-        _lt = instance.web._lt;
-    var QWeb = instance.web.qweb;
+odoo.define('oepetstore.petstore', function (require) {
+"use strict";
+    var Class = require('web.Class');
+    var Widget = require('web.Widget');
+    var core = require('web.core');
+    var utils = require('web.utils');
+    var _t = core._t;
+    var _lt = core._lt;
 
-    local.HomePage = instance.Widget.extend({
+    var homePage = Widget.extend({
+        init: function(parent) {
+            this._super(parent);
+            console.log("Hello JS, I'm inside of init.");
+        },
         start: function() {
-            console.log("pet store home page loaded");
+            console.log("Your pet store home page loaded");
         },
     });
+    core.action_registry.add('petstore', homePage);
 
-    instance.web.client_actions.add('petstore.homepage', 'instance.oepetstore.HomePage');
-}
+});

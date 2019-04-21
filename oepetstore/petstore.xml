@@ -20,7 +20,7 @@
     <!--左侧第一个主菜单下的第一个子菜单，因此当点击“顶部菜单”时默认执行的是关联该菜单的action-->
     <menuitem id="home_page_petstore_menu" name="Home Page" parent="petstore_menu"
         action="action_home_page"/>
-
+    <!--左侧第一个主菜单下的第二个子菜单关联的tree视图和form视图-->
     <record model="ir.ui.view" id="message_of_the_day_tree">
         <field name="name">message_of_the_day_tree</field>
         <field name="model">oepetstore.message_of_the_day</field>
@@ -44,17 +44,17 @@
             </form>
         </field>
     </record>
-
+    <!--左侧第一个主菜单下的第二个子菜单关联的action-->
     <record model="ir.actions.act_window" id="message_of_the_day_action">
         <field name="name">Message of the day</field>
         <field name="res_model">oepetstore.message_of_the_day</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-
+    <!--左侧第一个主菜单下的第二个子菜单-->
     <menuitem id="message_day" name="Message of the day" parent="petstore_menu"
         action="message_of_the_day_action"/>
-
+    <!--左侧第一个主菜单下的第三个子菜单关联的action-->
     <record model="ir.actions.act_window" id="pet_toys_action">
         <field name="name">Pet Toys</field>
         <field name="res_model">product.product</field>
@@ -72,7 +72,7 @@
             </field>
         </field>
     </record>
-
+    <!--左侧第一个主菜单下的第三个子菜单-->
     <menuitem id="pet_toys_action_menu" name="Pet Toys" parent="petstore_menu"
         action="pet_toys_action"/>
 

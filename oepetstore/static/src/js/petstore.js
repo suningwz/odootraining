@@ -1,5 +1,5 @@
 //首先通过odoo.define("namespaceName",function(require){});声明当前作用域适用范围
-odoo.define('oepetstore.petstore', function (require) {
+odoo.define('oepetstore.petstore', function (require) {   //第一个参数为"模块名.js文件名",第二个参数为一个函数
 "use strict";
     //通过require引入要使用的js模块
     var Class = require('web.Class');
@@ -21,7 +21,8 @@ odoo.define('oepetstore.petstore', function (require) {
             console.log("Your pet store home page loaded");
         },
     });
-    core.action_registry.add('petstore', homePage);
+    //将homePage注册到action，并取名为'petstore'，在ir.actions.client动作里的tag标签，使用的是'petstore'。而不是homePage
+    core.action_registry.add('petstore', homePage);  
     return homePage;
 
 });

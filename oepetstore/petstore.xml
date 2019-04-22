@@ -15,7 +15,7 @@
     <!--点击主菜单，提示找不到petstore.homepage-->
     <record id="action_home_page" model="ir.actions.client">
         <field name="name">Pet Store Home</field>
-        <field name="tag">petstore.homepage</field>
+        <field name="tag">petstore</field>
     </record>
     <!--左侧第一个主菜单下的第一个子菜单，因此当点击“顶部菜单”时默认执行的是关联该菜单的action-->
     <menuitem id="home_page_petstore_menu" name="Home Page" parent="petstore_menu"

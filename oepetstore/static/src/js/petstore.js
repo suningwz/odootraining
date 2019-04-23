@@ -1,4 +1,5 @@
-//首先通过odoo.define("namespaceName",function(require){});声明当前作用域适用范围
+//首先通过odoo.define("spaceName",function(require){});第一个参数为命名空间，必须全局唯一，
+//推荐使用“addonsname.jsmodulename”（即“odoo模块名.js文件名”）这样的命名方式。但这不是强制的，你可以随意命名，只要保证它全局唯一即可
 odoo.define('oepetstore.petstore', function (require) {   //第一个参数为"模块名.js文件名",第二个参数为一个函数
 "use strict";
     //通过require引入要使用的js模块
